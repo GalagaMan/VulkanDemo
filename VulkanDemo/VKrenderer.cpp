@@ -13,8 +13,7 @@ const bool enableValidationLayers{ true };
 #endif
 
 
-VkInstance instance;
-
+//VkInstance VKrenderer::instance;
 
 bool VKrenderer::CheckValidationSupport()
 {
@@ -53,7 +52,7 @@ void VKrenderer::CreateInstance()
 
 	struct VkApplicationInfo ApplicationInfo {};
 	ApplicationInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-	ApplicationInfo.pApplicationName = "Vulkan 2.1 Demo";
+	ApplicationInfo.pApplicationName = "Vulkan 1.2 Demo";
 	ApplicationInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
 	ApplicationInfo.pEngineName = "No Engine";
 	ApplicationInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
