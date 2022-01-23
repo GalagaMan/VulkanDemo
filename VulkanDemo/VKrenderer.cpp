@@ -15,6 +15,8 @@ const bool enableValidationLayers{ true };
 
 //VkInstance VKrenderer::instance;
 
+
+
 bool VKrenderer::CheckValidationSupport()
 {
 	uint32_t layerCount;

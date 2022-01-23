@@ -26,7 +26,7 @@ public:
 
 private:
 	GLFWwindow* window;
-	VKrenderer r;
+	VKrenderer* r = new VKrenderer();
 
 	void InitWindow()
 	{
@@ -37,7 +37,7 @@ private:
 	}
 	void InitVulkan() 
 	{
-		r.CreateInstance();
+		r -> CreateInstance();
 	}
 	void MainLoop()
 	{
@@ -49,7 +49,8 @@ private:
 	}
 	void CleanUp()
 	{
-		vkDestroyInstance(r.instance, nullptr);
+		vkDestroyInstance(r -> instance, nullptr);
+		delete r;
 		glfwDestroyWindow(window);
 		glfwTerminate();
 	}
