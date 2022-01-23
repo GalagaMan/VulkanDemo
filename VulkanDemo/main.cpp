@@ -3,7 +3,12 @@
 #include <iostream>
 #include <cstdlib>
 #include <stdexcept>
+#include <Windows.h>
+#include <vector>
 #include "VKrenderer.h"
+
+
+
 
 const uint32_t WIDTH = 800;
 const uint32_t HEIGHT = 800;
@@ -20,7 +25,7 @@ public:
 	}
 
 private:
-	GLFWwindow* Window;
+	GLFWwindow* window;
 	VKrenderer r;
 
 	void InitWindow()
@@ -28,22 +33,24 @@ private:
 		glfwInit();
 		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-		Window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan 1.2 Demo", nullptr, nullptr);
+		window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan 1.2 Demo", nullptr, nullptr);
 	}
 	void InitVulkan() 
 	{
 		r.CreateInstance();
 	}
-	void MainLoop() 
+	void MainLoop()
 	{
-		while (!glfwWindowShouldClose(Window)) 
+		while (!glfwWindowShouldClose(window))
 		{
 			glfwPollEvents();
+			//Sleep(1);
 		}
 	}
-	void CleanUp() 
+	void CleanUp()
 	{
-		glfwDestroyWindow(Window);
+		vkDestroyInstance(r.instance, nullptr);
+		glfwDestroyWindow(window);
 		glfwTerminate();
 	}
 };
