@@ -1,5 +1,4 @@
 # VulkanDemo
-That's where ye will contemplate my exhaustive CG and CXX skills
 
 In order to be compiled project does require following external libraries: 
 glfw compiled static libraries(.lib) and header files,
