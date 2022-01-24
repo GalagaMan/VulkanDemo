@@ -78,13 +78,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Programming\CPP\VulkanDemo\Dependencies\glfw-3.3.6\include;C:\Programming\CPP\VulkanDemo\Dependencies\Vulkan 1.2.198.1\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Programming\CPP\VulkanDemo\Dependencies\glfw-3.3.6\lib-vc2022;C:\Programming\CPP\VulkanDemo\Dependencies\Vulkan 1.2.198.1\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\glfw-3.3.6\include;$(SolutionDir)\Dependencies\Vulkan 1.2.198.1\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\Dependencies\glfw-3.3.6\lib-vc2022;$(SolutionDir)\Dependencies\Vulkan 1.2.198.1\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Programming\CPP\VulkanDemo\Dependencies\glfw-3.3.6\include;C:\Programming\CPP\VulkanDemo\Dependencies\Vulkan 1.2.198.1\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Programming\CPP\VulkanDemo\Dependencies\glfw-3.3.6\lib-vc2022;C:\Programming\CPP\VulkanDemo\Dependencies\Vulkan 1.2.198.1\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\glfw-3.3.6\include;$(SolutionDir)\Dependencies\Vulkan 1.2.198.1\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\Dependencies\glfw-3.3.6\lib-vc2022;$(SolutionDir)\Dependencies\Vulkan 1.2.198.1\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
