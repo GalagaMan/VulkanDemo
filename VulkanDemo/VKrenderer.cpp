@@ -1,9 +1,12 @@
 #include <vulkan/vulkan.h>
 #include <GLFW/glfw3.h>
+#include <glm.hpp>
 #include <iostream>
 #include <vector>
 #include "VKrenderer.h"
 
+
+#define GLFW_INCLUDE_VULKAN
 
 const std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
 #ifdef NDEBUG
@@ -13,8 +16,19 @@ const bool enableValidationLayers{ true };
 #endif
 
 
-//VkInstance VKrenderer::instance;
+void VKrenderer::CheckExtensions()
+{
+	uint32_t extensionCount;
+	vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
+	std::vector<VkExtensionProperties> extensions(extensionCount);
+	vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data());
 
+	std::cout << "available extensions:\n";
+	for (const auto& extension : extensions)
+	{
+		std::cout << '\t' << extension.extensionName << '\n';
+	}
+}
 
 
 bool VKrenderer::CheckValidationSupport()
@@ -28,7 +42,7 @@ bool VKrenderer::CheckValidationSupport()
 	for (const char* layerName : validationLayers)
 	{
 		bool layerFound = false;
-
+		
 		for (const auto& layerProperties : availableLayers)
 		{
 			if (strcmp(layerName, layerProperties.layerName) == 0)
@@ -45,14 +59,15 @@ bool VKrenderer::CheckValidationSupport()
 	return true;
 }
 
+
+
 void VKrenderer::CreateInstance()
 {
 	if (enableValidationLayers && !CheckValidationSupport())
 	{
-		throw std::runtime_error("unnable to get validation layers because unsupported\n");
+		throw std::runtime_error("unable to get validation layers due to unsupported\n");
 	}
 
-	struct VkApplicationInfo ApplicationInfo {};
 	ApplicationInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
 	ApplicationInfo.pApplicationName = "Vulkan 1.2 Demo";
 	ApplicationInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
@@ -60,7 +75,6 @@ void VKrenderer::CreateInstance()
 	ApplicationInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
 	ApplicationInfo.apiVersion = VK_API_VERSION_1_2;
 
-	struct VkInstanceCreateInfo InstanceInfo {};
 	InstanceInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 	InstanceInfo.pApplicationInfo = &ApplicationInfo;
 
@@ -73,6 +87,9 @@ void VKrenderer::CreateInstance()
 	{
 		InstanceInfo.enabledLayerCount = 0;
 	}
+
+	auto extensions = glfwGetRequiredInstanceExtensions;
+
 
 	uint32_t glfwExtensionCount{ 0 };
 	const char** glfwExtensions;

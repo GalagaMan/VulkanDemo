@@ -1,13 +1,15 @@
 #include <GLFW/glfw3.h>
 #include <vulkan/vulkan.h>
+#include <glm.hpp>
 #include <iostream>
 #include <cstdlib>
 #include <stdexcept>
 #include <Windows.h>
-#include <vector>
+#include <vector> 
 #include "VKrenderer.h"
+ 
 
-
+#define GLFW_INCLUDE_VULKAN
 
 
 const uint32_t WIDTH = 800;
@@ -38,6 +40,7 @@ private:
 	void InitVulkan() 
 	{
 		r -> CreateInstance();
+		r -> CheckExtensions();
 	}
 	void MainLoop()
 	{
